@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { CommentController } from './comment.controller';
+import { CommentService } from './comment.service';
 
 @Module({
   imports: [
     ClientsModule.register([
       {
-        name: 'POST_SERVICE',
+        name: 'COMMENT_SERVICE',
         transport: Transport.GRPC,
         options: {
-          package: 'post',
-          protoPath: join(__dirname, '../proto/post.proto'),
-          url: '0.0.0.0:50051',
+          package: 'comment',
+          protoPath: join(__dirname, '../../proto/comment.proto'),
+          url: '0.0.0.0:50052',
           loader: {
             keepCase: true,
             defaults: true,
@@ -23,7 +23,7 @@ import { join } from 'path';
       },
     ]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [CommentController],
+  providers: [CommentService],
 })
-export class AppModule {}
+export class CommentModule {}

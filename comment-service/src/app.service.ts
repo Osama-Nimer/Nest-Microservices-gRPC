@@ -47,7 +47,7 @@ export class AppService implements OnModuleInit {
 
       return {
         id: commentInternal.id,
-        postId: commentInternal.post_id,
+        post_id: commentInternal.post_id,
         content: commentInternal.content,
       };
     } catch (e: any) {
@@ -63,8 +63,8 @@ export class AppService implements OnModuleInit {
       `Searching for comments with PostID: ${data.id}. Found: ${filtered.length}`,
     );
 
-    console.log('Filtered comments:', this.comments);
+    console.log('Filtered comments:', filtered);
 
-    return [this.comments];
+    return { comments: filtered };
   }
 }

@@ -7,9 +7,9 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @GrpcMethod('CommentService', 'AddComment')
-  addComment(data: { postId: string; content: string }) {
-    console.log('Received AddComment request with postId:', data.postId);
-    return this.appService.addComment(data.postId, data.content);
+  addComment(data: { post_id: string; content: string }) {
+    console.log('Received AddComment request with post_id:', data.post_id);
+    return this.appService.addComment(data.post_id, data.content);
   }
   @GrpcMethod('CommentService', 'GetCommentsByPost')
   getCommentsByPost(data: { id: string }) {

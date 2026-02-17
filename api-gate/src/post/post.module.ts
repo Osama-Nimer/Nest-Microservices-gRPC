@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { PostController } from './post.controller';
+import { PostService } from './post.service';
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { join } from 'path';
         transport: Transport.GRPC,
         options: {
           package: 'post',
-          protoPath: join(__dirname, '../proto/post.proto'),
+          protoPath: join(__dirname, '../../proto/post.proto'),
           url: '0.0.0.0:50051',
           loader: {
             keepCase: true,
@@ -23,7 +23,7 @@ import { join } from 'path';
       },
     ]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [PostController],
+  providers: [PostService],
 })
-export class AppModule {}
+export class PostModule {}

@@ -12,6 +12,11 @@ async function bootstrap() {
         package: 'comment',
         protoPath: join(__dirname, '../proto/comment.proto'),
         url: '0.0.0.0:50052',
+        loader: {
+          keepCase: true,
+          defaults: true,
+          longs: String,
+        },
       },
     },
   );
