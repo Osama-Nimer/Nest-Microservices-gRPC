@@ -30,6 +30,7 @@ Contributions are welcome! Please read the contributing guidelines for more info
 #### API's
 
 ```Shell
+# Create a post
 POST http://localhost:3000/posts
 { "title": "Hello", "content": "My first post" }
 
