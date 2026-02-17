@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { RpcException } from '@nestjs/microservices';
+import { randomUUID } from 'crypto';
 
 export interface Post {
-  id: number;
+  id: string;
   title: string;
   content: string;
 }
@@ -12,18 +14,20 @@ export class AppService {
 
   createPost(title: string, content: string): Post {
     const post: Post = {
-      id: this.posts.length + 1,
-      title,
-      content,
+      id: randomUUID(),
+      title: title,
+      content: content,
     };
     this.posts.push(post);
     return post;
   }
 
-  getPost(id: number): Post {
+  getPost(id: string): Post {
     const post = this.posts.find((post) => post.id === id);
     if (!post) {
-      throw new Error('Post not found');
+      throw new RpcException({
+        message: `Post with ID ${id} not found`,
+      });
     }
     return post;
   }

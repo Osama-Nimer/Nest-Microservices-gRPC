@@ -7,13 +7,13 @@ import { GrpcMethod } from '@nestjs/microservices';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @GrpcMethod('PostService', 'CreatePost')
-  createPost(data: { title: string; content: string }): Post {
-    return this.appService.createPost(data.title, data.content);
+  @GrpcMethod('PostService', 'GetPost')
+  getPostGrpc(data: { id: string }): Post {
+    return this.appService.getPost(data.id);
   }
 
-  @GrpcMethod('PostService', 'GetPost')
-  getPost(data: { id: number }): Post {
-    return this.appService.getPost(data.id);
+  @GrpcMethod('PostService', 'CreatePost')
+  createPostGrpc(data: { title: string; content: string }): Post {
+    return this.appService.createPost(data.title, data.content);
   }
 }
